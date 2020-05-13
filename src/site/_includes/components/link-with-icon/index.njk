@@ -1,0 +1,6 @@
+{% macro linkWithIcon(href, icon, text) %}
+  <a class="unstyled-link link-with-icon" href="{{ href }}">
+    <span class="link-with-icon__icon">{{ icon }}</span>
+    <span class="link-with-icon__content">{{ text or caller() }}</span>
+  </a>
+{% endmacro %}

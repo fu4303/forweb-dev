@@ -1,0 +1,90 @@
+@use 'sass:color' as sassColor;
+@use 'tokens/color';
+
+$color: color.$blue;
+$color-hover: color.$red;
+$color-visited: color.$purple;
+
+@function get-border-color($color) {
+  @return sassColor.scale($color, $alpha: -80%);
+}
+
+@mixin base() {
+  border-bottom: thin solid get-border-color($color);
+  color: $color;
+}
+
+@mixin hover() {
+  border-bottom-color: sassColor.scale($color-hover, $alpha: -80%);
+  color: $color-hover;
+}
+
+@mixin focus() {
+  background-color: $color-hover;
+  border-bottom-color: transparent;
+  color: #fff;
+  outline: 0.15em solid $color-hover;
+}
+
+@mixin visited() {
+  border-bottom-color: get-border-color(($color-visited));
+  color: $color-visited;
+}
+
+@mixin visitedFocus() {
+  background-color: $color-visited;
+  border-bottom-color: transparent;
+  color: #fff;
+  outline-color: $color-visited;
+}
+
+@mixin link() {
+  @include base();
+
+  &:hover,
+  .indicate-visited-links &:visited:hover {
+    @include hover();
+  }
+
+  &:matches(:focus, :active) {
+    @include focus();
+    outline: none;
+  }
+
+  .indicate-visited-links &:visited {
+    @include visited();
+
+    &:matches(:focus, :active) {
+      @include visitedFocus();
+    }
+  }
+}
+
+@mixin linkContent($contentSelector) {
+  #{$contentSelector} {
+    @include base();
+  }
+
+  &:hover #{$contentSelector},
+  .indicate-visited-links &:visited:hover #{contentSelector} {
+    @include hover();
+  }
+
+  &:matches(:focus, :active) {
+    outline: none;
+
+    #{$contentSelector} {
+      @include focus();
+    }
+  }
+
+  .indicate-visited-links &:visited #{$contentSelector} {
+    @include visited();
+  }
+
+  .indicate-visited-links
+    &:visited:matches(:focus, :active)
+    #{$contentSelector} {
+    @include visitedFocus();
+  }
+}

@@ -4,16 +4,22 @@ title: For Web
 description: Годнота для фронтендеров и дизайнеров
 ---
 {% from "components/rss-link/index.njk" import rssLink %}
+{% from "components/link-with-icon/index.njk" import linkWithIcon %}
+{% from "components/icons/vk.njk" import iconVk %}
+{% from "components/icons/telegram.njk" import iconTelegram %}
+{% from "components/icons/twitter.njk" import iconTwitter %}
 
 <div class="content">
   <h1>
     Годнота для фронтендеров
   </h1>
 
-  <p class="paragraph--lead">С 2014 года ежедневно публикуем свежие статьи, доклады, инструменты и многое другое в <a href="tg://resolve?domain=forwebdev">Телеграме</a>, <a href="https://vk.com/forwebdev">ВКонтакте</a> и <a href="https://twitter.com/forwebdev">Твитере</a></p>
+  <p class="paragraph--lead">
+    С 2014 года ежедневно публикуем свежие статьи, доклады, инструменты и многое другое в {{ linkWithIcon(icon=iconTelegram(), href="tg://resolve?domain=forwebdev", text="Телеграме") }}, {{ linkWithIcon(icon=iconVk(), href="https://vk.com/forwebdev", text='ВКонтакте') }} и {{ linkWithIcon(icon=iconTwitter(), href="https://twitter.com/forwebdev", text="Твитере") }}
+  </p>
 
   <h2>
-    <a href="/blog">Наши статьи</a> {{ rssLink(site.feeds.articles) }}
+    <a href="/blog">Наши статьи</a> {{ rssLink(site.feeds.articles) }}
   </h2>
 
   <ul>
