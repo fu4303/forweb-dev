@@ -113,6 +113,8 @@ module.exports = (config) => {
   return {
     dir: {
       input: 'src',
+      inludes: '_includes',
+      data: '_data',
       output: '_site'
     },
     templateFormats: ['njk', 'md', 'png', 'jpg', 'jpeg', 'svg', '11ty.js'],
