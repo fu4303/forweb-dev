@@ -112,8 +112,8 @@ module.exports = (config) => {
 
   return {
     dir: {
-      input: 'src/site',
-      output: OUTPUT_FOLDER_NAME,
+      input: 'src',
+      output: '_site'
     },
     templateFormats: ['njk', 'md', 'png', 'jpg', 'jpeg', 'svg', '11ty.js'],
     passthroughFileCopy: true,
